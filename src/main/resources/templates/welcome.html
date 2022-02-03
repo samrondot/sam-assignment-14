@@ -14,16 +14,14 @@
 		
 	})
 	.then((response) => console.log(response.json()))
-		.then
-	
-	
+		.then((data) => 
+			sessionStorage.setItem('user', user))
+			var obj = JSON.parse(sessionStorage.user)
+	 		console.log(obj)
 		
 	</script>
 </head>
 <body>
-	<h1>Join A Channel</h1>
-	
-	
-	
+	<h1>Join A Channel</h1>	
 </body>
 </html>
