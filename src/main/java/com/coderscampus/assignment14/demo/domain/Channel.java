@@ -3,7 +3,9 @@ package com.coderscampus.assignment14.demo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +35,7 @@ public class Channel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinTable(name = "channel_user",
 			joinColumns = @JoinColumn(name = "channel_id"), 
 			inverseJoinColumns = @JoinColumn(name = "user_id"))

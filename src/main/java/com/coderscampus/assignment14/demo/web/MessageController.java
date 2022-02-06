@@ -21,8 +21,6 @@ public class MessageController {
 	@Autowired
 	private ChannelService channelService;
 	
-	
-	
 	@PostMapping("/messageSent/{channelId}")
 	@ResponseBody
 	private Message messageReceived(@RequestBody String message, @PathVariable Long channelId) {
