@@ -7,10 +7,10 @@
 <body>
 	<h1>Join A Channel</h1>	
 	<div>
-			<tr th:each = "channels:${channel}">
-				<a th:href = "@{/channels/{Id}(Id=${channels.Id})}">[[${channel.id}]]</a>
+				<tr th:each = "channels:${channel}">
+				<a th:href = "@{/channels/{channelId}(channelId=${channels.channelId})}">[[${channel.channelId}]]</a>
 				
-			</tr>
+				</tr>
 	
 	</div>
 	

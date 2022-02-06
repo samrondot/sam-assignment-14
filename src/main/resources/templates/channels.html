@@ -2,11 +2,14 @@
 	<html>
 		<head></head>
 	<body>
-	<hr/>
-	<textarea id = "textArea" >
+		<div>Name:
+			<span id="commentSection">  </span>
+		</div>
 		
-	</textarea>
-	
+	<hr/>
+		<textarea id="comment" ></textarea>
+		
 	<script type = "text/javascript" src = "/js/channels.js" ></script>
+	<script> document.getElementById('commentSection').innerHTML = sessionStorage.getItem('message')</script>
 	</body>
 </html>

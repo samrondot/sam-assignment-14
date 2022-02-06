@@ -14,14 +14,17 @@ public class ChannelService {
 	@Autowired
 	private ChannelRepository channelRepo;
 	
-	public Optional<Channel> findById(Long channelId) {
-		
-		return channelRepo.findById(channelId);
-	}
 
 	public void createChannel(Channel channel) {
 		channelRepo.save(channel);
 		
 	}
+
+	public Channel findById(Long channelId) {
+		return channelRepo.findByChannelId(channelId);
+	}
+		
+
+	
 
 }

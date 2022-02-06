@@ -14,18 +14,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Channel {
-	private Long id;
+	private Long channelId;
 	private String name;
 	private List<User> users = new ArrayList<>();
 	private List<Message> message = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
+	public Long getChannelId() {
+		return channelId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setChannelId(Long channelId) {
+		this.channelId = channelId;
 	}
 	public String getName() {
 		return name;

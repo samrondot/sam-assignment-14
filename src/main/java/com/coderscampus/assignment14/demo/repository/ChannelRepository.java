@@ -7,5 +7,7 @@ import com.coderscampus.assignment14.demo.domain.Channel;
 
 @Repository
 public interface ChannelRepository extends JpaRepository<Channel, Long>{
+	
 
+	Channel findByChannelId(Long channelId);
 }

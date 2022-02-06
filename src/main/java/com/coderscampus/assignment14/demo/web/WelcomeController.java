@@ -9,22 +9,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.coderscampus.assignment14.demo.domain.Channel;
+import com.coderscampus.assignment14.demo.domain.Message;
 import com.coderscampus.assignment14.demo.domain.User;
 import com.coderscampus.assignment14.demo.service.ChannelService;
+import com.coderscampus.assignment14.demo.service.UserService;
 
 @Controller
 public class WelcomeController {
 	
 	@Autowired
 	private ChannelService channelService;
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/welcome")
 	public String welcomePage (ModelMap model) {
 		User user = new User();
 		Channel channel = new Channel();
-		if(channel.getId() == null) {
-			channelService.createChannel(channel);
-		}
+		channelService.createChannel(channel);
 		model.put("user", user);
 		model.put("channel", channel);
 		return "welcome";
@@ -32,8 +34,10 @@ public class WelcomeController {
 	}
 	@GetMapping("/channels/{channelId}")
 	public String channels(ModelMap model, @PathVariable Long channelId) {
-		Optional<Channel> channel = channelService.findById(channelId);
+		Channel channel = channelService.findById(channelId);
+		Message message = new Message();
 		model.put("channel", channel);
+		model.put("message", message);
 		return "channels";
 	}
 	

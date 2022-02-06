@@ -1,6 +1,4 @@
-
-	var user = prompt('Enter your name') 
-	
+var user = prompt('Enter your name') 
 		fetch("/welcome/createuser", {
 		method : "POST",
 		headers: {
@@ -15,5 +13,4 @@
 			var userObj = JSON.stringify(sessionStorage.user)
 	 		console.log(userObj)
 			console.log('Hello')
-
 

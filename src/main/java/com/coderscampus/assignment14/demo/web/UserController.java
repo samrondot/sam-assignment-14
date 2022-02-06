@@ -21,6 +21,7 @@ public class UserController {
 		System.out.println(user);
 		newUser.setUsername(user);
 		userService.createUser(newUser);
+		System.out.println(newUser.getMessage());
 		return newUser;
 	}
 }

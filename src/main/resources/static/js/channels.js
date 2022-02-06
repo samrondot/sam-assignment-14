@@ -1,18 +1,26 @@
-var sendMessage = document.querySelector("#textArea")
-
-sendMessage.addEventListener('keypress', () =>{
+var sendMessage = document.querySelector("#comment")
+var url = window.location.pathname;
+var id = url.substring(url.lastIndexOf('/'))
+	
+console.log(id)
+sendMessage.addEventListener('keypress', function(e) {
+	
+	if(e.key ==='Enter'){
 	var message = {
-		"textArea": textArea.value}
-	fetch('/messageSent'), {
+		"comment": comment.value}
+	fetch(`/messageSent${id}`,{
 		method: 'POST',
 		headers: {
 			"Content-Type": "application/JSON"
 		},
 		body: JSON.stringify(message)
 		
-	}
+		
+	})
 	.then((response) => response.json())
 	.then((data) => {
-		console.log(data)
-	})
-})
+		sessionStorage.setItem('message',JSON.stringify(message))
+		
+})}})
+
+
