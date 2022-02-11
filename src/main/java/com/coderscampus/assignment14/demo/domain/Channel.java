@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Channel {
 	private Long channelId;
@@ -36,6 +38,7 @@ public class Channel {
 		this.name = name;
 	}
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+	@JsonIgnore
 	@JoinTable(name = "channel_user",
 			joinColumns = @JoinColumn(name = "channel_id"), 
 			inverseJoinColumns = @JoinColumn(name = "user_id"))

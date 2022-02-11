@@ -11,21 +11,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User {
-	private Long id;
+	private Long userId;
 	private String username;
 	private List<Message> message = new ArrayList<>();
 	private List<Channel> channel = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getUsername() {
 		return username;
@@ -41,6 +43,7 @@ public class User {
 		this.message = message;
 	}
 	@ManyToMany(mappedBy = "users")
+	@JsonIgnore
 	public List<Channel> getChannel() {
 		return channel;
 	}
