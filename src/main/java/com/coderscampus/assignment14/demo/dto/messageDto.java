@@ -1,10 +1,15 @@
 package com.coderscampus.assignment14.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class messageDto {
+	@JsonProperty("message")
 	private String message;
+	@JsonProperty("userId")
 	private Long userId;
+	@JsonProperty("channelId")
 	private Long channelId;
+	
 	public String getMessage() {
 		return message;
 	}
@@ -23,6 +28,8 @@ public class messageDto {
 	public void setChannelId(Long channelId) {
 		this.channelId = channelId;
 	}
+	
+	
 	
 	
 }

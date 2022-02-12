@@ -37,18 +37,14 @@ public class Channel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-	@JsonIgnore
-	@JoinTable(name = "channel_user",
-			joinColumns = @JoinColumn(name = "channel_id"), 
-			inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@ManyToMany(mappedBy = "channel", cascade = CascadeType.PERSIST)
 	public List<User> getUsers() {
 		return users;
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	@OneToMany(mappedBy = "channel")
+	@OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Message> getMessage() {
 		return message;
 	}

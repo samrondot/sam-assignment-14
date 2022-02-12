@@ -1,14 +1,13 @@
-let user = prompt('Enter your name') 
+
+
+let username = prompt('Enter your name') 
 		fetch("/welcome/createuser", {
 		method : "POST",
 		headers: {
 			"Content-Type" : "application/json"
 		},
-		body: user
-		
+		body: username
 	})
-	.then((response) => console.log(response.json()))
-		.then(data => 
-			sessionStorage.setItem('user', JSON.stringify(user)),
-			console.log(user))
-	 		
+	.then((response) => response.json())
+		.then(user => 
+			sessionStorage.setItem("user",JSON.stringify(user)))

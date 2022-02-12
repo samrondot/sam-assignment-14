@@ -17,6 +17,7 @@ import com.coderscampus.assignment14.demo.domain.Message;
 import com.coderscampus.assignment14.demo.domain.User;
 import com.coderscampus.assignment14.demo.dto.messageDto;
 import com.coderscampus.assignment14.demo.service.ChannelService;
+import com.coderscampus.assignment14.demo.service.MessageService;
 import com.coderscampus.assignment14.demo.service.UserService;
 
 @Controller
@@ -26,6 +27,8 @@ public class ChatroomController {
 	private ChannelService channelService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MessageService messageService;
 	
 	@GetMapping("/welcome")
 	public String welcomePage(ModelMap model) {
@@ -38,8 +41,8 @@ public class ChatroomController {
 	}
 	@ResponseBody
 	@PostMapping("/welcome/createuser")
-	public User createUser(@RequestBody String user) {
-		return userService.createUser(user);
+	public User createUser(@RequestBody String username, Channel channel) {
+		return userService.createUser(username, channel);
 	}
 	
 	@GetMapping("/channels/{channelId}")
@@ -50,11 +53,13 @@ public class ChatroomController {
 	}
 	@ResponseBody
 	@PostMapping("/messageSent/{channelId}")
-		private messageDto messageReceived (@RequestBody messageDto message, @PathVariable Long channelId) {
+		private void messageReceived (@RequestBody messageDto message, @PathVariable Long channelId) {
 		messageDto messageDto = new messageDto();
-		messageDto.setChannelId(channelId);
+		System.out.println(message.getChannelId());
+		messageDto.setChannelId(message.getChannelId());
 		messageDto.setMessage(message.getMessage());
 		messageDto.setUserId(message.getUserId());
-		return messageDto;
+		messageService.createMessage(message,channelId);
+		
 	}
 }

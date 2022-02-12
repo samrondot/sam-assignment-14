@@ -4,24 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "messages")
 public class Message {
-	private Long id;
+	private Long messageId;
 	private String message;
 	private User user;
 	private Channel channel;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
+	public Long getMessageId() {
+		return messageId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setMessageId(Long messageId) {
+		this.messageId = messageId;
 	}
 	public String getMessage() {
 		return message;
@@ -30,6 +31,7 @@ public class Message {
 		this.message = message;
 	}
 	@ManyToOne
+	@JoinColumn(name = "user_Id")
 	public User getUser() {
 		return user;
 	}
@@ -37,6 +39,7 @@ public class Message {
 		this.user = user;
 	}
 	@ManyToOne
+	@JoinColumn(name = "channel_Id")
 	public Channel getChannel() {
 		return channel;
 	}
