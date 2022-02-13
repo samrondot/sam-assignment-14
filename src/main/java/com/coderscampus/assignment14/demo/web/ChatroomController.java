@@ -33,10 +33,11 @@ public class ChatroomController {
 	@GetMapping("/welcome")
 	public String welcomePage(ModelMap model) {
 		Channel channel = new Channel();
-		List<Channel> channels = new ArrayList<>();
-		channelService.createChannel(channel);
+		if(channel.getChannelId() == null) {
+			channelService.createChannel(channel);
+		}
+		
 		model.put("channel", channel);
-		model.put("channels", channels);
 		return "welcome";
 	}
 	@ResponseBody
@@ -60,6 +61,12 @@ public class ChatroomController {
 		messageDto.setMessage(message.getMessage());
 		messageDto.setUserId(message.getUserId());
 		messageService.createMessage(message,channelId);
+		
+	}
+	@ResponseBody
+	@PostMapping("/obtainMessages")
+		private List<messageDto> obtainMessages() {
+			return messageService.getAllMessages();
 		
 	}
 }

@@ -9,7 +9,16 @@ public class messageDto {
 	private Long userId;
 	@JsonProperty("channelId")
 	private Long channelId;
+	@JsonProperty("username")
+	private String username;
 	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getMessage() {
 		return message;
 	}

@@ -1,5 +1,8 @@
 package com.coderscampus.assignment14.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +34,20 @@ private UserService userService;
 		newMessage.setChannel(channel);
 		messageRepo.save(newMessage);
 		
+	}
+
+
+	public List<messageDto> getAllMessages() {
+		messageDto messageDto = new messageDto();
+		List<Message> messageList = messageRepo.findAll();
+		List<messageDto> messagesDto = new ArrayList<>();
+		for (Message message:messageList) {
+			messageDto.setMessage(message.getMessage());
+			messageDto.setUserId(message.getUser().getUserId());
+			messageDto.setChannelId(message.getMessageId());
+			messageDto.setUsername(message.getUser().getUsername());
+			messagesDto.add(messageDto);
+		}
+		return messagesDto;
 	}	
 }
