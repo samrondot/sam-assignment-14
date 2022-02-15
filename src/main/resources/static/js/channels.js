@@ -1,3 +1,9 @@
+if (console.log(user != null)){
+	
+}else{window.location.href = '/welcome'}
+
+
+
 var sendMessage = document.querySelector("#comment")
 var url = window.location.pathname;
 const queryString = window.location.href;
@@ -31,8 +37,7 @@ sendMessage.addEventListener('keypress', function(e) {
 			getMessages()
 		})}})
 		
-		
-function getMessages(message){
+function getMessages(){
 	fetch('/obtainMessages',{
 		method: 'POST',
 		headers:{
@@ -46,11 +51,16 @@ function getMessages(message){
 			}
 	)
 }
-function displayMessages(message){
-	var mainContainer = document.getElementById("commentSection")
-		for(var i = 0; i < message.length; i++){
+setInterval(getMessages, 500);
+
+
+function displayMessages(messages){
+			var mainContainer = document.getElementById("commentSection")
+			mainContainer.innerHTML = "";
+		for(var i = 0; i < messages.length; i++){
 			var div = document.createElement("div");
-			div.innerHTML = message[i].username + ' : ' + message[i].message;
-			mainContainer.appendChild(div)
+			div.innerHTML = messages[i].username + ' : ' + messages[i].message;
+				mainContainer.appendChild(div)
+				console.log(messages[i])
 		}
 }

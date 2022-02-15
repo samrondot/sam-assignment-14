@@ -33,10 +33,12 @@ public class ChatroomController {
 	@GetMapping("/welcome")
 	public String welcomePage(ModelMap model) {
 		Channel channel = new Channel();
-		if(channel.getChannelId() == null) {
-			channelService.createChannel(channel);
+		List<Channel> allChannels = channelService.findAll();
+		if(allChannels.size() == 0) {
+			channel = channelService.createChannel(channel);
+		}else {
+			channel = allChannels.get(0);
 		}
-		
 		model.put("channel", channel);
 		return "welcome";
 	}
