@@ -30,6 +30,11 @@ public class ChatroomController {
 	@Autowired
 	private MessageService messageService;
 	
+	@GetMapping("/")
+	public String directToWelcome() {
+		return "redirect:/welcome";
+	}
+	
 	@GetMapping("/welcome")
 	public String welcomePage(ModelMap model) {
 		Channel channel = new Channel();
@@ -46,6 +51,15 @@ public class ChatroomController {
 	@PostMapping("/welcome/createuser")
 	public User createUser(@RequestBody String username, Channel channel) {
 		return userService.createUser(username, channel);
+	}
+	
+	@PostMapping("/createChannel")
+	public String createChannel(String channelSubmission) {
+		Channel channel = new Channel();
+		channel.setName(channelSubmission);
+		channelService.createCustomChannel(channel);
+		return "redirect:/channels/" + channel.getChannelId();
+		
 	}
 	
 	@GetMapping("/channels/{channelId}")

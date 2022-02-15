@@ -1,19 +1,14 @@
-if (console.log(user != null)){
-	
-}else{window.location.href = '/welcome'}
-
-
+if(sessionStorage.getItem("user") === null) {
+	window.location = "/welcome"	
+}
 
 var sendMessage = document.querySelector("#comment")
 var url = window.location.pathname;
 const queryString = window.location.href;
 var id = url.substring(url.lastIndexOf('/'))
 let channelId = queryString.substring(queryString.lastIndexOf("/") +1, queryString.length)
-
-
 var user = JSON.parse(
 	sessionStorage.getItem("user"))
-
 console.log(user)
 
 sendMessage.addEventListener('keypress', function(e) {

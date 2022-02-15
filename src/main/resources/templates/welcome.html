@@ -5,16 +5,22 @@
 	<script type ="text/javascript" src= "/js/welcome.js"></script>
 </head>
 <body>
-	<h1>Join A Channel</h1>	
-	<div>
-				<tr th:each = "channels:${channel}">
-				<a th:href = "@{/channels/{channelId}(channelId=${channels.channelId})}">[[${channel.name}]]</a>
-				
-				</tr>
+<h1>Join A Channel</h1>	
 	
+	<div>
+			<tr th:each = "channels:${channel}">
+			<a th:href = "@{/channels/{channelId}(channelId=${channels.channelId})}">[[${channel.name}]]</a>
+				
+			</tr>
+	</div>
+	<div>
+	<form action = "/createChannel" method = "post">
+			<input type = "text" th:field = "${channel.name}"/>
+			<input id = "newChannel" type = "submit" value = "Create New Channel"/>
+	</form>
 	</div>
 	
-	
+	<script type="text/javascript" src = "/js/welcome.js"></script>
 	
 </body>
 </html>

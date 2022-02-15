@@ -1,4 +1,4 @@
-
+var makeChannel = document.getElementById("newChannel")
 
 let username = prompt('Enter your name') 
 		fetch("/welcome/createuser", {
@@ -9,5 +9,10 @@ let username = prompt('Enter your name')
 		body: username
 	})
 	.then((response) => response.json())
-		.then(user => 
+		.then(user =>
 			sessionStorage.setItem("user",JSON.stringify(user)))
+			
+makeChannel.addEventListener('click',() =>{
+	
+	
+})
