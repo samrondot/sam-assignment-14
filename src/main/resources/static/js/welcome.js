@@ -1,6 +1,6 @@
-var makeChannel = document.getElementById("newChannel")
 
-let username = prompt('Enter your name') 
+
+	let username = prompt('Enter your name') 
 		fetch("/welcome/createuser", {
 		method : "POST",
 		headers: {
@@ -11,8 +11,6 @@ let username = prompt('Enter your name')
 	.then((response) => response.json())
 		.then(user =>
 			sessionStorage.setItem("user",JSON.stringify(user)))
+	
+
 			
-makeChannel.addEventListener('click',() =>{
-	
-	
-})

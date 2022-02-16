@@ -33,7 +33,7 @@ sendMessage.addEventListener('keypress', function(e) {
 		})}})
 		
 function getMessages(){
-	fetch('/obtainMessages',{
+	fetch('/obtainMessages'+id,{
 		method: 'POST',
 		headers:{
 			"Content-Type": "application/JSON"

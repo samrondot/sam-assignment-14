@@ -35,9 +35,24 @@ private UserService userService;
 	}
 
 
-	public List<messageDto> getAllMessages() {
-		
-		List<Message> messageList = messageRepo.findAll();
+//	public List<messageDto> getAllMessages() {
+//		
+//		List<Message> messageList = messageRepo.findAll();
+//		List<messageDto> messagesDto = new ArrayList<>();
+//		for (Message message:messageList) {
+//			messageDto messageDto = new messageDto();
+//			messageDto.setMessage(message.getMessage());
+//			messageDto.setUserId(message.getUser().getUserId());
+//			messageDto.setChannelId(message.getMessageId());
+//			messageDto.setUsername(message.getUser().getUsername());
+//			messagesDto.add(messageDto);
+//		}
+//		return messagesDto;
+//	}
+
+
+	public List<messageDto> getMessageByChannelId(Long channelId) {
+		List<Message> messageList = messageRepo.findAllByChannelId(channelId);
 		List<messageDto> messagesDto = new ArrayList<>();
 		for (Message message:messageList) {
 			messageDto messageDto = new messageDto();
@@ -48,5 +63,6 @@ private UserService userService;
 			messagesDto.add(messageDto);
 		}
 		return messagesDto;
-	}	
-}
+	}
+}	
+

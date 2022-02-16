@@ -45,6 +45,7 @@ public class ChatroomController {
 			channel = allChannels.get(0);
 		}
 		model.put("channel", channel);
+		model.put("channels", allChannels);
 		return "welcome";
 	}
 	@ResponseBody
@@ -52,16 +53,18 @@ public class ChatroomController {
 	public User createUser(@RequestBody String username, Channel channel) {
 		return userService.createUser(username, channel);
 	}
-	
-	@PostMapping("/createChannel")
-	public String createChannel(String channelSubmission) {
+	@GetMapping("/createChannel")
+	public String createChannel(ModelMap model) {
 		Channel channel = new Channel();
-		channel.setName(channelSubmission);
-		channelService.createCustomChannel(channel);
-		return "redirect:/channels/" + channel.getChannelId();
-		
+		model.put("channel", channel);
+		return "createChannel";
 	}
 	
+	@PostMapping("/createChannel")
+	public String createChannel(Channel channelSubmission) {
+		channelService.createCustomChannel(channelSubmission);
+		return "redirect:/welcome";
+	}
 	@GetMapping("/channels/{channelId}")
 		public String showChannels(ModelMap model, @PathVariable Long channelId) {
 		Channel channel = channelService.findById(channelId);
@@ -80,9 +83,10 @@ public class ChatroomController {
 		
 	}
 	@ResponseBody
-	@PostMapping("/obtainMessages")
-		private List<messageDto> obtainMessages() {
-			return messageService.getAllMessages();
+	@PostMapping("/obtainMessages/{channelId}")
+		private List<messageDto> obtainMessages(@PathVariable Long channelId) {
+			
+			return messageService.getMessageByChannelId(channelId);
 		
 	}
 }

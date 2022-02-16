@@ -26,7 +26,7 @@ public class ChannelService {
 		return channelRepo.findAll();
 	}
 
-	public Channel createCustomChannel(Channel channel) {
-		return channelRepo.save(channel);
+	public void createCustomChannel(Channel channel) {
+		channelRepo.save(channel);
 	}
 }
